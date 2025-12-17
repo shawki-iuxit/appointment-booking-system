@@ -171,7 +171,7 @@ class TimeslotService
 
         while ($current->lt($end)) {
             $endSlot = $current->copy()->addMinutes($durationMinutes);
-            
+
             if ($endSlot->gt($end)) {
                 break;
             }
