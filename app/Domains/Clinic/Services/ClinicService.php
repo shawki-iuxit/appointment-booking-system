@@ -2,7 +2,7 @@
 
 namespace App\Domains\Clinic\Services;
 
-use App\Contracts\ClinicRepositoryInterface;
+use App\Domains\Clinic\Contacts\ClinicRepositoryInterface;
 use App\Models\Clinic;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
