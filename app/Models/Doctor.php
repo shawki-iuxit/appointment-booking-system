@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Doctor extends Model
 {
@@ -41,5 +42,10 @@ class Doctor extends Model
     public function deactivate(): void
     {
         $this->status = self::STATUS_INACTIVE;
+    }
+
+    public function timeslots(): HasMany
+    {
+        return $this->hasMany(Timeslot::class);
     }
 }
