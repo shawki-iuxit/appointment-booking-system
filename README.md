@@ -226,3 +226,69 @@ graph LR
     APP3 --> S3
 ```
 
+
+
+
+### 1. SMS / Email Reminders
+
+**Purpose:**  
+Notify users about upcoming appointments, updates, or cancellations.
+
+**Architecture:**
+- Use a **Job & Queue system** (e.g. Redis + Workers)
+- Events trigger jobs (appointment created/updated/cancelled)
+- Background workers handle message delivery
+
+**Integrations:**
+- SMS: Twilio / AWS SNS
+- Email: SMTP / SendGrid / Amazon SES
+
+**Flow:**
+1. Appointment event fired
+2. job added to queue
+3. Worker sends SMS/Email asynchronously
+
+---
+
+### 2. Online Consultations
+
+**Purpose:**  
+Enable real-time virtual appointments.
+
+**Architecture:**
+- **WebSocket server** for real-time messaging and presence
+- **WebRTC** for audio/video communication
+- Signaling handled via WebSockets
+
+**Components:**
+- Realtime Chat (WebSocket)
+- Video/Audio Calls (WebRTC)
+- room management
+
+**Flow:**
+1. Appointment starts
+2. 1-1 chat room created
+3. Users connect via WebSocket + WebRTC
+
+---
+
+### 3. Payment Integration
+
+**Purpose:**  
+Allow users to pay for appointments or services online.
+
+**Architecture:**
+- Integrate **3rd-party payment providers**
+- Backend handles payment intent and verification
+- Webhooks for payment status updates
+
+**Integrations:**
+- Stripe / PayPal
+- Webhook listener for success/failure events
+
+**Flow:**
+1. User initiates payment
+2. Redirect or embedded checkout
+3. Payment confirmation via webhook
+4. Appointment marked as paid
+
