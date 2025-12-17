@@ -5,7 +5,6 @@ namespace App\Domains\Clinic\Repositories;
 use App\Contracts\ClinicRepositoryInterface;
 use App\Models\Clinic;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ClinicRepository implements ClinicRepositoryInterface
 {
@@ -27,25 +26,27 @@ class ClinicRepository implements ClinicRepositoryInterface
     {
         $clinic = $this->clinic->findOrFail($id);
         $clinic->update($data);
+
         return $clinic->refresh();
     }
 
     public function delete(int $id): bool
     {
         $clinic = $this->clinic->findOrFail($id);
+
         return $clinic->delete();
     }
 
     public function getAll(array $filters = [], int $perPage = 15): LengthAwarePaginator
     {
-        $query = $this->clinic->newQuery();
+        $query = $this->clinic->with('doctors');
 
-        if (!empty($filters['status'])) {
+        if (! empty($filters['status'])) {
             $query->where('status', $filters['status']);
         }
 
-        if (!empty($filters['name'])) {
-            $query->where('name', 'LIKE', '%' . $filters['name'] . '%');
+        if (! empty($filters['name'])) {
+            $query->where('name', 'LIKE', '%'.$filters['name'].'%');
         }
 
         return $query->orderBy('created_at', 'desc')->paginate($perPage);

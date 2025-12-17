@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Clinic;
+use Illuminate\Foundation\Http\FormRequest;
 
 class CreateClinicRequest extends FormRequest
 {
@@ -17,7 +17,7 @@ class CreateClinicRequest extends FormRequest
         return [
             'name' => 'required|string|min:2|max:255|unique:clinics,name',
             'address' => 'nullable|string|max:500',
-            'status' => 'nullable|integer|in:' . Clinic::STATUS_ACTIVE . ',' . Clinic::STATUS_INACTIVE,
+            'status' => 'nullable|integer|in:'.Clinic::STATUS_ACTIVE.','.Clinic::STATUS_INACTIVE,
         ];
     }
 

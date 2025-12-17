@@ -7,8 +7,8 @@ use Illuminate\Http\JsonResponse;
 class BaseController extends Controller
 {
     protected function successResponse(
-        $data = null, 
-        string $message = 'Operation successful', 
+        $data = null,
+        string $message = 'Operation successful',
         int $statusCode = 200
     ): JsonResponse {
         return response()->json([
@@ -19,10 +19,10 @@ class BaseController extends Controller
     }
 
     protected function errorResponse(
-        string $message = 'Operation failed', 
-        $errors = null, 
-        int $statusCode = 500, 
-        string $errorCode = null
+        string $message = 'Operation failed',
+        $errors = null,
+        int $statusCode = 500,
+        ?string $errorCode = null
     ): JsonResponse {
         $response = [
             'success' => false,

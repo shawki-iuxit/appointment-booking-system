@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Clinic;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateClinicRequest extends FormRequest
 {
@@ -15,11 +15,11 @@ class UpdateClinicRequest extends FormRequest
     public function rules(): array
     {
         $clinicId = $this->route('id');
-        
+
         return [
-            'name' => 'sometimes|string|min:2|max:255|unique:clinics,name,' . $clinicId,
+            'name' => 'sometimes|string|min:2|max:255|unique:clinics,name,'.$clinicId,
             'address' => 'nullable|string|max:500',
-            'status' => 'sometimes|integer|in:' . Clinic::STATUS_ACTIVE . ',' . Clinic::STATUS_INACTIVE,
+            'status' => 'sometimes|integer|in:'.Clinic::STATUS_ACTIVE.','.Clinic::STATUS_INACTIVE,
         ];
     }
 

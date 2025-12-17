@@ -17,8 +17,8 @@ class ClinicService
     public function getClinic(int $id): Clinic
     {
         $clinic = $this->clinicRepository->find($id);
-        
-        if (!$clinic) {
+
+        if (! $clinic) {
             throw new ModelNotFoundException('Clinic not found');
         }
 
@@ -38,14 +38,14 @@ class ClinicService
     public function createClinic(array $data): Clinic
     {
         $this->validateClinicData($data);
-        
+
         return $this->clinicRepository->create($data);
     }
 
     public function updateClinic(int $id, array $data): Clinic
     {
         $this->validateClinicData($data, $id);
-        
+
         return $this->clinicRepository->update($id, $data);
     }
 
@@ -59,7 +59,7 @@ class ClinicService
         $clinic = $this->getClinic($id);
         $clinic->activate();
         $clinic->save();
-        
+
         return $clinic;
     }
 
@@ -68,7 +68,7 @@ class ClinicService
         $clinic = $this->getClinic($id);
         $clinic->deactivate();
         $clinic->save();
-        
+
         return $clinic;
     }
 
@@ -82,7 +82,7 @@ class ClinicService
             throw new ValidationException('Clinic name must be at least 2 characters');
         }
 
-        if (isset($data['status']) && !in_array($data['status'], [Clinic::STATUS_ACTIVE, Clinic::STATUS_INACTIVE])) {
+        if (isset($data['status']) && ! in_array($data['status'], [Clinic::STATUS_ACTIVE, Clinic::STATUS_INACTIVE])) {
             throw new ValidationException('Invalid status value');
         }
     }

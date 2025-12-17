@@ -24,7 +24,7 @@ return new class extends Migration
                 'doctor_id',
                 'date',
                 'start_time',
-                'end_time'
+                'end_time',
             ]);
         });
     }

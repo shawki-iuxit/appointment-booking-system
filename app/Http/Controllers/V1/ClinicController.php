@@ -22,9 +22,9 @@ class ClinicController extends BaseController
         try {
             $filters = $request->only(['status', 'name']);
             $perPage = $request->get('per_page', 15);
-            
+
             $clinics = $this->clinicService->getAllClinics($filters, $perPage);
-            
+
             return $this->successResponse(
                 ClinicTransformer::transformPaginated($clinics),
                 'Clinics retrieved successfully'
@@ -41,7 +41,7 @@ class ClinicController extends BaseController
     {
         try {
             $clinic = $this->clinicService->getClinic($id);
-            
+
             return $this->successResponse(
                 ClinicTransformer::transform($clinic),
                 'Clinic retrieved successfully'
@@ -60,7 +60,7 @@ class ClinicController extends BaseController
     {
         try {
             $clinic = $this->clinicService->createClinic($request->validated());
-            
+
             return $this->createdResponse(
                 ClinicTransformer::transform($clinic),
                 'Clinic created successfully'
@@ -77,7 +77,7 @@ class ClinicController extends BaseController
     {
         try {
             $clinic = $this->clinicService->updateClinic($id, $request->validated());
-            
+
             return $this->successResponse(
                 ClinicTransformer::transform($clinic),
                 'Clinic updated successfully'
@@ -96,7 +96,7 @@ class ClinicController extends BaseController
     {
         try {
             $this->clinicService->deleteClinic($id);
-            
+
             return $this->successResponse(
                 null,
                 'Clinic deleted successfully'

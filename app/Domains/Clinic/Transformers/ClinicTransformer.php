@@ -16,15 +16,16 @@ class ClinicTransformer
             'status_label' => $clinic->isActive() ? 'Active' : 'Inactive',
             'created_at' => $clinic->created_at?->toISOString(),
             'updated_at' => $clinic->updated_at?->toISOString(),
+            'doctors' => $clinic->doctors,
         ];
     }
 
     public static function transformCollection($clinics): array
     {
         // if (is_array($clinics)) {
-            return array_map(function ($clinic) {
-                return self::transform($clinic);
-            }, $clinics);
+        return array_map(function ($clinic) {
+            return self::transform($clinic);
+        }, $clinics);
         // }
     }
 
@@ -36,8 +37,8 @@ class ClinicTransformer
                 'current_page' => $paginatedClinics->currentPage(),
                 'last_page' => $paginatedClinics->lastPage(),
                 'per_page' => $paginatedClinics->perPage(),
-                'total' => $paginatedClinics->total()
-            ]
+                'total' => $paginatedClinics->total(),
+            ],
         ];
     }
 }
