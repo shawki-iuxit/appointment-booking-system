@@ -23,7 +23,7 @@ class BookingRepository implements BookingRepositoryInterface
     public function createAppointmentWithTimeSlotUpdate(int $timeSlotId, int $patientId): Appointment
     {
         return DB::transaction(function () use ($timeSlotId, $patientId) {
-            $timeSlot = $this->timeslot->findOrFail($timeSlotId);
+            $timeSlot = $this->timeslot->lockForUpdate()->findOrFail($timeSlotId);
 
             $timeSlot->markAsUnavailable();
             $timeSlot->save();
