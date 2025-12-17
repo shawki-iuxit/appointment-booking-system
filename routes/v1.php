@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\V1\BookingController;
 use App\Http\Controllers\V1\ClinicController;
 use App\Http\Controllers\V1\DoctorController;
 use App\Http\Controllers\V1\PatientController;
@@ -42,4 +43,12 @@ Route::prefix('patients')->group(function () {
     Route::get('/{id}', [PatientController::class, 'show']);
     Route::put('/{id}', [PatientController::class, 'update']);
     Route::delete('/{id}', [PatientController::class, 'destroy']);
+
+    // Patient appointments
+    Route::get('/{patientId}/appointments', [BookingController::class, 'getPatientAppointments']);
+});
+
+Route::prefix('bookings')->group(function () {
+    Route::post('/', [BookingController::class, 'bookAppointment']);
+    Route::get('/timeslots/{timeslotId}/availability', [BookingController::class, 'checkTimeSlotAvailability']);
 });

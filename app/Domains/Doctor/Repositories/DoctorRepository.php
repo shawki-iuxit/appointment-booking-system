@@ -2,7 +2,7 @@
 
 namespace App\Domains\Doctor\Repositories;
 
-use App\Contracts\DoctorRepositoryInterface;
+use App\Domains\Doctor\Contacts\DoctorRepositoryInterface;
 use App\Models\Doctor;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 

@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
-use App\Contracts\ClinicRepositoryInterface;
-use App\Contracts\DoctorRepositoryInterface;
+use App\Domains\Booking\Contracts\BookingRepositoryInterface;
+use App\Domains\Booking\Repositories\BookingRepository;
+use App\Domains\Clinic\Contacts\ClinicRepositoryInterface;
 use App\Domains\Clinic\Repositories\ClinicRepository;
+use App\Domains\Doctor\Contacts\DoctorRepositoryInterface;
 use App\Domains\Doctor\Repositories\DoctorRepository;
 use App\Domains\Patient\Contracts\PatientRepositoryInterface;
 use App\Domains\Patient\Repositories\PatientRepository;
@@ -37,6 +39,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             PatientRepositoryInterface::class,
             PatientRepository::class
+        );
+
+        $this->app->bind(
+            BookingRepositoryInterface::class,
+            BookingRepository::class
         );
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Contracts;
+namespace App\Domains\Doctor\Contacts;
 
 use App\Models\Doctor;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;

@@ -2,7 +2,7 @@
 
 namespace App\Domains\Timeslot\Services;
 
-use App\Contracts\DoctorRepositoryInterface;
+use App\Domains\Doctor\Contacts\DoctorRepositoryInterface;
 use App\Domains\Timeslot\Contracts\TimeslotRepositoryInterface;
 use App\Models\Timeslot;
 use Carbon\Carbon;
@@ -170,10 +170,9 @@ class TimeslotService
         $current = $start->copy();
 
         while ($current->lt($end)) {
-            $slotEnd = $current->copy()->addMinutes($durationMinutes);
-
-            // Ensure we don't exceed the end time
-            if ($slotEnd->gt($end)) {
+            $endSlot = $current->copy()->addMinutes($durationMinutes);
+            
+            if ($endSlot->gt($end)) {
                 break;
             }
 
@@ -181,10 +180,10 @@ class TimeslotService
                 'doctor_id' => $doctorId,
                 'date' => $date,
                 'start_time' => $current->format('H:i'),
-                'end_time' => $slotEnd->format('H:i'),
+                'end_time' => $endSlot->format('H:i'),
             ];
 
-            $current = $slotEnd;
+            $current = $endSlot;
         }
 
         return $timeslots;

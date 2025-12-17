@@ -2,8 +2,8 @@
 
 namespace App\Domains\Doctor\Services;
 
-use App\Contracts\ClinicRepositoryInterface;
-use App\Contracts\DoctorRepositoryInterface;
+use App\Domains\Clinic\Contacts\ClinicRepositoryInterface;
+use App\Domains\Doctor\Contacts\DoctorRepositoryInterface;
 use App\Models\Doctor;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

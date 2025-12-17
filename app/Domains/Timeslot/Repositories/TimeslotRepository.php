@@ -146,7 +146,6 @@ class TimeslotRepository implements TimeslotRepositoryInterface
                 $q->whereTime('start_time', '<', $endTime)
                     ->whereTime('end_time', '>', $startTime);
             })
-            ->with('doctor')
             ->get();
     }
 }
