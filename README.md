@@ -186,7 +186,7 @@ php artisan test --coverage
 
 ```mermaid
 graph LR
-    LB[Load Balancer<br/>HAProxy/AWS ALB]
+    LB[Load Balancer]
     
     subgraph "Application Servers"
         APP1[Laravel Instance 1]
